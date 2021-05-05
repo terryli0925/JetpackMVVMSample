@@ -1,6 +1,6 @@
 package com.example.jetpackmvvm.sample.ui.gallery;
 
-import android.os.Handler;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -8,23 +8,30 @@ import androidx.lifecycle.ViewModel;
 
 public class GalleryViewModel extends ViewModel {
 
-    private GalleryDataModel galleryDataModel = new GalleryDataModel();
-    private MutableLiveData<String> mText;
+    public final MutableLiveData<String> text = new MutableLiveData<>();
+    public final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    private GalleryDataModel galleryDataModel;
 
     public GalleryViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        init(new GalleryDataModel());
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public GalleryViewModel(GalleryDataModel dataModel) {
+        init(dataModel);
     }
 
-    public void updateText(String text) {
+    private void init(GalleryDataModel dataModel) {
+        galleryDataModel = dataModel;
+//        text.setValue("This is gallery fragment");
+    }
+
+    public void refresh() {
+        isLoading.setValue(true);
         galleryDataModel.retrieveData(new GalleryDataModel.onDataReadyCallback() {
             @Override
             public void onDataReady(String data) {
-                mText.setValue(text);
+                GalleryViewModel.this.text.setValue(data);
+                isLoading.setValue(false);
             }
         });
     }

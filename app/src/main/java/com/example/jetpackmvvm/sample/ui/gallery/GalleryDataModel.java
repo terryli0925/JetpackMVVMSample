@@ -8,7 +8,7 @@ public class GalleryDataModel {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                callback.onDataReady("New Data");
+                callback.onDataReady("Refresh done");
             }
         }, 1500);
     }
