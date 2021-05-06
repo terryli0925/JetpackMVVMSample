@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.jetpackmvvm.sample.databinding.FragmentGalleryBinding;
+import com.example.jetpackmvvm.sample.util.ViewModelFactory;
 
 public class GalleryFragment extends Fragment {
 
@@ -24,8 +25,8 @@ public class GalleryFragment extends Fragment {
         mBinding = FragmentGalleryBinding.inflate(inflater, container, false);
         mViewModel = new ViewModelProvider(this).get(GalleryViewModel.class);
         // 使用ViewModelFactory帶入construct參數
-//        GalleryViewModelFactory factory = new GalleryViewModelFactory(new GalleryDataModel());
-//        GalleryViewModel viewModel = new ViewModelProvider(this, factory).get(GalleryViewModel.class);
+//        ViewModelFactory factory = new ViewModelFactory(new GalleryDataModel());
+//        GalleryViewModel mViewModel = new ViewModelProvider(this, factory).get(GalleryViewModel.class);
         mBinding.setViewModel(mViewModel);
         mBinding.setLifecycleOwner(this);
         mBinding.updateBtn.setOnClickListener(new View.OnClickListener() {
