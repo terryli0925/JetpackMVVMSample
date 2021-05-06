@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.jetpackmvvm.sample.databinding.FragmentGalleryBinding;
+import com.example.jetpackmvvm.sample.util.Event;
 import com.example.jetpackmvvm.sample.util.ViewModelFactory;
 
 public class GalleryFragment extends Fragment {
@@ -35,11 +36,14 @@ public class GalleryFragment extends Fragment {
                 mViewModel.refresh();
             }
         });
-        mViewModel.text.observe(getViewLifecycleOwner(), new Observer<String>() {
+        mViewModel.text.observe(getViewLifecycleOwner(), new Observer<Event<String>>() {
             @Override
-            public void onChanged(@Nullable String data) {
-                mBinding.textGallery.setText(data);
-                Toast.makeText(getActivity(), "更新完成", Toast.LENGTH_SHORT).show();
+            public void onChanged(Event<String> event) {
+                String data = event.getContentIfNotHandled();
+                if (data != null) {
+                    mBinding.textGallery.setText(data);
+                    Toast.makeText(getActivity(), "更新完成", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return mBinding.getRoot();

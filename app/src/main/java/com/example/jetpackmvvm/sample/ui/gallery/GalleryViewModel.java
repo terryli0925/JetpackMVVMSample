@@ -6,9 +6,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.jetpackmvvm.sample.util.Event;
+
 public class GalleryViewModel extends ViewModel {
 
-    public final MutableLiveData<String> text = new MutableLiveData<>();
+    public final MutableLiveData<Event<String>> text = new MutableLiveData<>();
     public final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private GalleryDataModel galleryDataModel;
 
@@ -30,7 +32,7 @@ public class GalleryViewModel extends ViewModel {
         galleryDataModel.retrieveData(new GalleryDataModel.onDataReadyCallback() {
             @Override
             public void onDataReady(String data) {
-                GalleryViewModel.this.text.setValue(data);
+                GalleryViewModel.this.text.setValue(new Event<>(data));
                 isLoading.setValue(false);
             }
         });
