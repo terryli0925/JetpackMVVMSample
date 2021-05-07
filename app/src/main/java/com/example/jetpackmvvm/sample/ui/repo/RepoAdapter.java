@@ -46,12 +46,6 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder
     public void onBindViewHolder(RepoViewHolder holder, int position) {
         Repo repo = items.get(position);
         holder.bind(repo);
-        Glide.with(holder.itemView.getContext())
-                .load(repo.owner.avatarUrl)
-                .into(holder.binding.ownerAvatar);
-        holder.binding.name.setText(repo.fullName);
-        holder.binding.desc.setText(repo.description);
-        holder.binding.stars.setText(""+repo.stars);
     }
 
     @Override
