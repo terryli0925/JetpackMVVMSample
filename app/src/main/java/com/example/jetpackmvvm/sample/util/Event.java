@@ -32,6 +32,10 @@ public class Event<T> {
         mContent = content;
     }
 
+    public T getContent() {
+        return mContent;
+    }
+
     public T getContentIfNotHandled() {
         if (hasBeenHandled) {
             return null;

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="repo"
+            type="com.example.jetpackmvvm.sample.data.model.Repo" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/ownerAvatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{repo.fullName}"
+            app:layout_constraintBottom_toBottomOf="@id/guideline3"
+            app:layout_constraintEnd_toStartOf="@+id/stars"
+            app:layout_constraintStart_toEndOf="@+id/ownerAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Repository name" />
+
+        <TextView
+            android:id="@+id/stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{String.valueOf(repo.stars)}"
+            app:drawableEndCompat="@android:drawable/btn_star"
+            app:layout_constraintBottom_toBottomOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="48dp" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{repo.description}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ownerAvatar"
+            tools:text="This is some description more description more description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
