@@ -1,17 +1,24 @@
 package com.example.jetpackmvvm.sample.ui.repo;
 
+import android.text.TextUtils;
+
+import androidx.arch.core.util.Function;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.example.jetpackmvvm.sample.data.model.Repo;
+import com.example.jetpackmvvm.sample.util.AbsentLiveData;
 import com.example.jetpackmvvm.sample.util.Event;
 
 import java.util.List;
 
 public class RepoViewModel extends ViewModel {
 
-    public final MutableLiveData<Event<List<Repo>>> repos = new MutableLiveData<>();
     public final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    public LiveData<Event<List<Repo>>> repos;
+    private final MutableLiveData<String> query = new MutableLiveData<>();
     private RepoDataModel repoDataModel;
 
     public RepoViewModel() {
@@ -24,16 +31,19 @@ public class RepoViewModel extends ViewModel {
 
     private void init(RepoDataModel dataModel) {
         repoDataModel = dataModel;
-    }
-
-    public void searchRepo(String query) {
-        isLoading.setValue(true);
-        repoDataModel.searchRepo(query, new RepoDataModel.onDataReadyCallback() {
+        repos = Transformations.switchMap(query, new Function<String, LiveData<Event<List<Repo>>>>() {
             @Override
-            public void onDataReady(List<Repo> data) {
-                RepoViewModel.this.repos.setValue(new Event<>(data));
-                isLoading.setValue(false);
+            public LiveData<Event<List<Repo>>> apply(String input) {
+                if (TextUtils.isEmpty(input)) {
+                    return AbsentLiveData.create();
+                } else {
+                    return dataModel.searchRepo(input);
+                }
             }
         });
+    }
+
+    public void searchRepo(String inputText) {
+        query.setValue(inputText);
     }
 }

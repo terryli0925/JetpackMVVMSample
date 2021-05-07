@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.jetpackmvvm.sample.data.model.Repo;
 import com.example.jetpackmvvm.sample.databinding.RepoItemBinding;
 
@@ -59,17 +58,16 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder
         notifyItemRangeRemoved(0, size);
     }
 
-    void setItems(List<Repo> newItems) {
-        this.items.clear();
-        this.items.addAll(newItems);
-        notifyDataSetChanged();
-    }
-
     void swapItems(List<Repo> newItems) {
-        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new RepoDiffCallback(this.items, newItems));
-        this.items.clear();
-        this.items.addAll(newItems);
-        result.dispatchUpdatesTo(this);
+        if (newItems == null) {
+            clearItems();
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new RepoDiffCallback(this.items, newItems));
+            this.items.clear();
+            this.items.addAll(newItems);
+            result.dispatchUpdatesTo(this);
+        }
+
     }
 
     private class RepoDiffCallback extends DiffUtil.Callback {

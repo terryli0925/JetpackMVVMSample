@@ -2,7 +2,6 @@ package com.example.jetpackmvvm.sample.ui.repo;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +31,8 @@ public class RepoFragment extends Fragment {
         mBinding = FragmentRepoBinding.inflate(inflater, container, false);
         mViewModel = new ViewModelProvider(this).get(RepoViewModel.class);
         // 使用ViewModelFactory帶入construct參數
-//        ViewModelFactory factory = new ViewModelFactory(new GalleryDataModel());
-//        GalleryViewModel mViewModel = new ViewModelProvider(this, factory).get(GalleryViewModel.class);
+//        ViewModelFactory factory = new ViewModelFactory(new RepoViewModel());
+//        RepoViewModel mViewModel = new ViewModelProvider(this, factory).get(RepoViewModel.class);
         mBinding.setViewModel(mViewModel);
         mBinding.setLifecycleOwner(this);
 
@@ -49,7 +48,9 @@ public class RepoFragment extends Fragment {
         mViewModel.repos.observe(getViewLifecycleOwner(), new Observer<Event<List<Repo>>>() {
             @Override
             public void onChanged(Event<List<Repo>> event) {
-                mRepoAdapter.swapItems(event.getContent());
+                List<Repo> data = event != null ? event.getContent() : null;
+                mRepoAdapter.swapItems(data);
+                mViewModel.isLoading.setValue(false);
             }
         });
         return mBinding.getRoot();
@@ -57,10 +58,7 @@ public class RepoFragment extends Fragment {
 
     private void doSearch() {
         String query = mBinding.edtQuery.getText().toString();
-        if (TextUtils.isEmpty(query)) {
-            mRepoAdapter.clearItems();
-            return;
-        }
+        mViewModel.isLoading.setValue(true);
         mViewModel.searchRepo(query);
         dismissKeyboard();
     }

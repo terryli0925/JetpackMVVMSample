@@ -1,9 +1,12 @@
 package com.example.jetpackmvvm.sample.ui.repo;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.jetpackmvvm.sample.data.api.GithubService;
 import com.example.jetpackmvvm.sample.data.api.RetrofitManager;
 import com.example.jetpackmvvm.sample.data.model.Repo;
 import com.example.jetpackmvvm.sample.data.model.RepoSearchResponse;
+import com.example.jetpackmvvm.sample.util.Event;
 
 import java.util.List;
 
@@ -15,11 +18,13 @@ public class RepoDataModel {
 
     private GithubService githubService = RetrofitManager.getAPI();
 
-    public void searchRepo(String query, final onDataReadyCallback callback) {
+    public MutableLiveData<Event<List<Repo>>> searchRepo(String query) {
+        final MutableLiveData<Event<List<Repo>>> repos = new MutableLiveData<>();
+
         githubService.searchRepos(query).enqueue(new Callback<RepoSearchResponse>() {
             @Override
             public void onResponse(Call<RepoSearchResponse> call, Response<RepoSearchResponse> response) {
-                callback.onDataReady(response.body().getItems());
+                repos.setValue(new Event<>(response.body().getItems()));
             }
 
             @Override
@@ -27,10 +32,6 @@ public class RepoDataModel {
 
             }
         });
-
-    }
-
-    interface onDataReadyCallback {
-        void onDataReady(List<Repo> data);
+        return repos;
     }
 }
