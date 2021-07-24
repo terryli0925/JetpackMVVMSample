@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
-
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.jetpackmvvm.sample.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+    app:startDestination="@+id/nav_repo">
 
     <fragment
         android:id="@+id/nav_repo"
         android:name="com.example.jetpackmvvm.sample.ui.repo.RepoFragment"
         android:label="@string/menu_repo"
         tools:layout="@layout/fragment_repo" />
+
+    <fragment
+        android:id="@+id/nav_switch_sample"
+        android:name="com.example.jetpackmvvm.sample.ui.switchsample.SwitchSampleFragment"
+        android:label="@string/menu_switch_sample"
+        tools:layout="@layout/fragment_switch_sample" />
 
     <fragment
         android:id="@+id/nav_slideshow"

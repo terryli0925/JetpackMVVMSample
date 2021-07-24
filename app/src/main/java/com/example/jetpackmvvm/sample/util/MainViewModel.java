@@ -11,11 +11,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainViewModel extends AndroidViewModel {
 
+    private final MutableLiveData<Boolean> showBanner = new MutableLiveData<Boolean>(true);
+
     public MainViewModel(@NonNull @NotNull Application application) {
         super(application);
     }
 
-    private final MutableLiveData<Boolean> showBanner = new MutableLiveData<Boolean>(false);
     public void setBannerState(Boolean showBanner) {
         this.showBanner.setValue(showBanner);
     }
