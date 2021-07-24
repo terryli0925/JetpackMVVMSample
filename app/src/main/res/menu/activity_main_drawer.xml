@@ -8,16 +8,19 @@
         <item
             android:id="@+id/nav_repo"
             android:icon="@drawable/ic_menu_gallery"
+            android:menuCategory="secondary"
             android:title="@string/menu_repo" />
 
         <item
             android:id="@+id/nav_switch_sample"
             android:icon="@drawable/ic_menu_camera"
+            android:menuCategory="secondary"
             android:title="@string/menu_switch_sample" />
 
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
+            android:menuCategory="secondary"
             android:title="@string/menu_slideshow" />
     </group>
 </menu>
