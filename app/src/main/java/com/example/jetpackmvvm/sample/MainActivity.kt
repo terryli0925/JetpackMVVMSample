@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.jetpackmvvm.sample.databinding.ActivityMainBinding
 import com.example.jetpackmvvm.sample.util.MainViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.navView, navController)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.bannerState.observe(this, { state: Boolean -> binding.appBarMain.fab.visibility = if (state) View.VISIBLE else View.GONE })
+        viewModel.showBanner.observe(this, { state: Boolean -> binding.appBarMain.fab.visibility = if (state) View.VISIBLE else View.GONE })
 
     }
 
