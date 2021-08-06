@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jetpackmvvm.sample.data.model.Repo
 import com.example.jetpackmvvm.sample.databinding.FragmentRepoBinding
@@ -16,7 +16,9 @@ import com.example.jetpackmvvm.sample.util.Event
 
 class RepoFragment : Fragment() {
     private lateinit var binding: FragmentRepoBinding
-    private lateinit var viewModel: RepoViewModel
+    private val viewModel: RepoViewModel by viewModels()
+    // 使用ViewModelFactory帶入construct參數
+//    private val viewModel: RepoViewModel by viewModels { ViewModelFactory(RepoDataModel()) }
     private val repoAdapter = RepoAdapter(mutableListOf())
 
     override fun onCreateView(
@@ -24,15 +26,12 @@ class RepoFragment : Fragment() {
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentRepoBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(RepoViewModel::class.java)
-        // 使用ViewModelFactory帶入construct參數
-//        val factory = ViewModelFactory(RepoViewModel())
-//        viewModel = ViewModelProvider(this, factory).get(RepoViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.btnSearch.setOnClickListener { doSearch() }
         binding.recyclerView.layoutManager = LinearLayoutManager(
-            context, LinearLayoutManager.VERTICAL, false)
+            context, LinearLayoutManager.VERTICAL, false
+        )
         binding.recyclerView.adapter = repoAdapter
         viewModel.repos.observe(viewLifecycleOwner, Observer<Event<List<Repo>>> { event ->
             val data: List<Repo> = event.content

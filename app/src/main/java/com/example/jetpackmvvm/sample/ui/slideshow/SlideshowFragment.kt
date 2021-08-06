@@ -6,17 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.jetpackmvvm.sample.R
 
 class SlideshowFragment : Fragment() {
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private val slideshowViewModel: SlideshowViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        slideshowViewModel = ViewModelProvider(this).get(SlideshowViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
         val textView = root.findViewById<TextView>(R.id.text_slideshow)
         slideshowViewModel.text.observe(viewLifecycleOwner, {

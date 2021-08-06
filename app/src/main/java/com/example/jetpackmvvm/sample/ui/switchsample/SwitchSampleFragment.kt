@@ -2,15 +2,14 @@ package com.example.jetpackmvvm.sample.ui.switchsample
 
 import android.os.Bundle
 import android.view.*
-import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.example.jetpackmvvm.sample.databinding.FragmentSwitchSampleBinding
 import com.example.jetpackmvvm.sample.util.MainViewModel
 
 class SwitchSampleFragment : Fragment() {
     private lateinit var binding: FragmentSwitchSampleBinding
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +23,7 @@ class SwitchSampleFragment : Fragment() {
     ): View {
         binding = FragmentSwitchSampleBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+//        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         viewModel.showBanner.observe(viewLifecycleOwner, { state: Boolean ->
             binding.switch1.isChecked = state
         })
