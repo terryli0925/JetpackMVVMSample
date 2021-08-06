@@ -8,7 +8,7 @@
 
         <variable
             name="repo"
-            type="com.example.jetpackmvvm.sample.data.model.Repo" />
+            type="com.terry.jetpackmvvm.sample.data.model.Repo" />
 
     </data>
 

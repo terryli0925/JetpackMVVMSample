@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.jetpackmvvm.sample.ui.repo.RepoViewModel" />
+            type="com.terry.jetpackmvvm.sample.ui.repo.RepoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

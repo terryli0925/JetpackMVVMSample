@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_repo"
-        android:name="com.example.jetpackmvvm.sample.ui.repo.RepoFragment"
+        android:name="com.terry.jetpackmvvm.sample.ui.repo.RepoFragment"
         android:label="@string/menu_repo"
         tools:layout="@layout/fragment_repo" />
 
     <fragment
         android:id="@+id/nav_switch_sample"
-        android:name="com.example.jetpackmvvm.sample.ui.switchsample.SwitchSampleFragment"
+        android:name="com.terry.jetpackmvvm.sample.ui.switchsample.SwitchSampleFragment"
         android:label="@string/menu_switch_sample"
         tools:layout="@layout/fragment_switch_sample" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.jetpackmvvm.sample.ui.slideshow.SlideshowFragment"
+        android:name="com.terry.jetpackmvvm.sample.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
