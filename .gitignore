@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/terry.ks
+keystore.properties
