@@ -12,15 +12,47 @@ def keystoreProperties = new Properties()
 // Load your keystore.properties file into the keystoreProperties object.
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
+def autoIncrementVersion() {
+    def versionPropsFile = rootProject.file('version.properties')
+    Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(versionPropsFile))
+
+    def value = 0
+    def runTasks = gradle.startParameter.taskNames
+    for(String task : runTasks) {
+        println task
+        if (task.contains("assembleRuntimeRelease")) {
+            value = 1
+        }
+    }
+
+    def versionMinor = versionProps['VERSION_MINOR'].toInteger()
+    def versionPatch = versionProps['VERSION_PATCH'].toInteger() + value
+    if (versionPatch == 100) {
+        versionMinor = versionMinor + 1
+        versionPatch = 0
+    }
+
+    versionProps['VERSION_CODE'] = (versionProps['VERSION_CODE'].toInteger() + value).toString()
+//    versionProps['VERSION_MAJOR'] = versionProps['VERSION_MAJOR']
+    versionProps['VERSION_MINOR'] = versionMinor.toString()
+    versionProps['VERSION_PATCH'] = versionPatch.toString()
+
+    versionProps.store(versionPropsFile.newWriter(), null)
+    return versionProps
+}
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
+
+    Properties versionProps = autoIncrementVersion()
 
     defaultConfig {
         applicationId "com.terry.jetpackmvvm.sample"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 3
-        versionName "1.0.1"
+        versionCode versionProps['VERSION_CODE'].toInteger()
+        versionName "${versionProps['VERSION_MAJOR']}.${versionProps['VERSION_MINOR']}.${versionProps['VERSION_PATCH']}"
         // Rename apk/aab file name
         setProperty("archivesBaseName", "app" + "-" + versionName)
 
