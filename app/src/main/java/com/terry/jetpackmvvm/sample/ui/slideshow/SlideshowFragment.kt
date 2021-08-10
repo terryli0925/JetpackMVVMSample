@@ -23,4 +23,13 @@ class SlideshowFragment : Fragment() {
         })
         return root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        testANR()
+    }
+
+    private fun testANR() {
+        val t = 100 /0
+    }
 }
