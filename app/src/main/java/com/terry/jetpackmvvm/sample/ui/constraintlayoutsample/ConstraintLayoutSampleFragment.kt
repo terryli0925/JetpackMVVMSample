@@ -1,4 +1,4 @@
-package com.terry.jetpackmvvm.sample.ui.constraintLayoutSample
+package com.terry.jetpackmvvm.sample.ui.constraintlayoutsample
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
