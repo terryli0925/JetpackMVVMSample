@@ -10,4 +10,5 @@
     <string name="menu_switch_sample">Switch</string>
     <string name="menu_repo">Repo</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_constraint_layout_sample">ConstraintLayout</string>
 </resources>

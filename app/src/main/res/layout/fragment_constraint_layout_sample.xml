@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        tools:context=".ui.constraintLayoutSample.ConstraintLayoutSampleFragment">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="平均分配寬度"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view1" />
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:padding="10dp"
+            android:text="tttttt"
+            app:layout_constraintEnd_toStartOf="@id/tv_right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title1" />
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light"
+            android:padding="10dp"
+            android:text="bbbbbb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title1" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_left2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view1" />
+
+        <TextView
+            android:id="@+id/tv_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Packed chain with bias 0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view2" />
+
+        <TextView
+            android:id="@+id/tv_left2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="tttttt"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/tv_right2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title2"
+            app:layout_constraintWidth_percent="0.4" />
+
+        <TextView
+            android:id="@+id/tv_right2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="bbbbbb"
+            app:layout_constraintEnd_toEndOf="@id/view2"
+            app:layout_constraintStart_toEndOf="@+id/tv_left2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title2"
+            app:layout_constraintWidth_percent="0.4" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view2">
+
+            <TextView
+                android:id="@+id/tv_title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Spread_inside chain with bias 0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/view3"
+                app:layout_constraintTop_toTopOf="@id/view3" />
+
+            <TextView
+                android:id="@+id/tv_left3"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:background="@android:color/holo_red_light"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="tttttt"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/tv_right3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/view3"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title3"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <TextView
+                android:id="@+id/tv_right3"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:background="@android:color/holo_green_light"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="bbbbbb"
+                app:layout_constraintEnd_toEndOf="@id/view3"
+                app:layout_constraintStart_toEndOf="@+id/tv_left3"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title3"
+                app:layout_constraintWidth_percent="0.45"
+                app:layout_goneMarginStart="0dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/tv_title3"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginTop="4dp"-->
+        <!--        android:text="Packed chain with bias"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintHorizontal_bias="0.0"-->
+        <!--        app:layout_constraintStart_toStartOf="@id/view3"-->
+        <!--        app:layout_constraintTop_toTopOf="@id/view3" />-->
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/tv_left3"-->
+        <!--        android:layout_width="0dp"-->
+        <!--        android:layout_height="100dp"-->
+        <!--        android:background="@android:color/holo_red_light"-->
+        <!--        android:gravity="center"-->
+        <!--        android:padding="10dp"-->
+        <!--        android:text="tttttt"-->
+        <!--        android:visibility="visible"-->
+        <!--        app:layout_constraintWidth_percent="0.5"-->
+        <!--        app:layout_constraintEnd_toStartOf="@+id/tv_right3"-->
+        <!--        app:layout_constraintHorizontal_chainStyle="spread"-->
+        <!--        app:layout_constraintStart_toStartOf="@id/view3"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/tv_title3" />-->
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/tv_right3"-->
+        <!--        android:layout_width="0dp"-->
+        <!--        android:layout_height="100dp"-->
+        <!--        android:background="@android:color/holo_green_light"-->
+        <!--        android:gravity="center"-->
+        <!--        android:padding="10dp"-->
+        <!--        android:text="bbbbbb"-->
+        <!--        app:layout_constraintWidth_percent="0.5"-->
+        <!--        app:layout_constraintEnd_toEndOf="@id/view3"-->
+        <!--        app:layout_constraintStart_toEndOf="@+id/tv_left3"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/tv_title3"-->
+        <!--        app:layout_goneMarginStart="0dp" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -22,4 +22,10 @@
         android:name="com.terry.jetpackmvvm.sample.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_constraint_layout_sample"
+        android:name="com.terry.jetpackmvvm.sample.ui.constraintLayoutSample.ConstraintLayoutSampleFragment"
+        android:label="@string/menu_constraint_layout_sample"
+        tools:layout="@layout/fragment_constraint_layout_sample" />
 </navigation>

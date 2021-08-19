@@ -18,6 +18,12 @@
             android:title="@string/menu_switch_sample" />
 
         <item
+            android:id="@+id/nav_constraint_layout_sample"
+            android:icon="@drawable/ic_menu_gallery"
+            android:menuCategory="secondary"
+            android:title="@string/menu_constraint_layout_sample" />
+
+        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:menuCategory="secondary"

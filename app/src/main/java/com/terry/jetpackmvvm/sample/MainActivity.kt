@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
         appBarConfiguration = AppBarConfiguration.Builder(
-                R.id.nav_repo, R.id.nav_switch_sample, R.id.nav_slideshow)
+                R.id.nav_repo, R.id.nav_switch_sample, R.id.nav_slideshow, R.id.nav_constraint_layout_sample)
                 .setOpenableLayout(binding.drawerLayout)
                 .build()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
