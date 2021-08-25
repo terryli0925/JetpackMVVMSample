@@ -1,4 +1,4 @@
-package com.terry.jetpackmvvm.sample.util
+package com.terry.jetpackmvvm.sample.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

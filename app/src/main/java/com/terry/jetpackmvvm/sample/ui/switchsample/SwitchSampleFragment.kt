@@ -5,7 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.terry.jetpackmvvm.sample.databinding.FragmentSwitchSampleBinding
-import com.terry.jetpackmvvm.sample.util.MainViewModel
+import com.terry.jetpackmvvm.sample.ui.MainViewModel
 
 class SwitchSampleFragment : Fragment() {
     private lateinit var binding: FragmentSwitchSampleBinding
