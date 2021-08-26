@@ -15,19 +15,18 @@ import com.terry.jetpackmvvm.sample.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import com.terry.jetpackmvvm.sample.MainApplication
 import com.terry.jetpackmvvm.sample.R
+import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
 import com.terry.jetpackmvvm.sample.util.TAG
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
 import com.terry.jetpackmvvm.sample.util.activitymanager.OnAppStatusListener
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : BaseActivity<ActivityMainBinding>() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val viewModel: MainViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main) as ActivityMainBinding
+    override fun getLayoutId(): Int = R.layout.activity_main
+
+    override fun init() {
         setSupportActionBar(binding.appBarMain.toolbar)
         binding.appBarMain.fab.setOnClickListener { view ->
 //            viewModel.setBannerState(mViewModel.getBannerState().getValue() != null && !mViewModel.getBannerState().getValue());
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         ActivityManager.callbacks.setOnAppStatusListener(object : OnAppStatusListener {
             override fun onFront() {
                 Log.i(TAG, "onFront")
-                Log.i("TAG", "onFront")
             }
 
             override fun onBack() {
@@ -77,8 +75,4 @@ class MainActivity : AppCompatActivity() {
         return (NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp())
     }
-
-//    companion object {
-//        public const val TAG = MainActivity::class.qualifiedName
-//    }
 }
