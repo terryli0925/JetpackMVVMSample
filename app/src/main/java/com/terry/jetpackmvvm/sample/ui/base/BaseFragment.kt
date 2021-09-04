@@ -70,7 +70,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     /**
      * fragment处于可见状态时自动调用该方法，实现懒加载，一般用作网络请求
      */
-    protected abstract fun lazyLoad()
+    protected open fun lazyLoad() {}
 
     protected open fun lazyLoadEvery() {}
 

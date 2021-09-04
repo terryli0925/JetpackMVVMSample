@@ -11,14 +11,13 @@ import com.terry.jetpackmvvm.sample.GlideApp
 import com.terry.jetpackmvvm.sample.util.ScreenUtils
 import android.graphics.drawable.Drawable
 
-import android.view.ViewGroup
-
 import android.graphics.Bitmap
-
-import androidx.annotation.NonNull
 
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.util.Base64
 
 
 object ImageUtils {
@@ -120,5 +119,22 @@ object ImageUtils {
 
             override fun onLoadCleared(placeholder: Drawable?) {}
         })
+    }
+
+    /**
+     * Base64轉Bitmap
+     */
+    fun getBitmapFromBase64(base64: String): Bitmap {
+        val decodedString = Base64.decode(base64, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+    }
+
+    /**
+     * 等比例放大縮小
+     */
+    fun scaleBitmap(bitmap: Bitmap, scale: Float): Bitmap {
+        val matrix = Matrix()
+        matrix.postScale(scale, scale)
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 }

@@ -28,4 +28,10 @@
         android:name="com.terry.jetpackmvvm.sample.ui.constraintlayoutsample.ConstraintLayoutSampleFragment"
         android:label="@string/menu_constraint_layout_sample"
         tools:layout="@layout/fragment_constraint_layout_sample" />
+
+    <fragment
+        android:id="@+id/nav_utiltest"
+        android:name="com.terry.jetpackmvvm.sample.ui.utiltest.UtilTestFragment"
+        android:label="@string/menu_utiltest"
+        tools:layout="@layout/fragment_util_test" />
 </navigation>

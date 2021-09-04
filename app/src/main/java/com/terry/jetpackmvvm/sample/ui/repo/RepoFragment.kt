@@ -13,12 +13,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
 import com.terry.jetpackmvvm.sample.util.Event
+import com.terry.jetpackmvvm.sample.util.ViewModelFactory
+import com.terry.jetpackmvvm.sample.util.ViewModelFactory2
+
 
 class RepoFragment : Fragment() {
     private lateinit var binding: FragmentRepoBinding
+
     private val viewModel: RepoViewModel by viewModels()
     // 使用ViewModelFactory帶入construct參數
 //    private val viewModel: RepoViewModel by viewModels { ViewModelFactory(RepoDataModel()) }
+//    private val viewModel2: RepoViewModel by viewModels {
+//        ViewModelFactory2 {
+//            RepoViewModel(
+//                RepoDataModel()
+//            )
+//        }
+//    }
     private val repoAdapter = RepoAdapter(mutableListOf())
 
     override fun onCreateView(

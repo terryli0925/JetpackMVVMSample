@@ -40,10 +40,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             R.id.nav_repo,
             R.id.nav_switch_sample,
             R.id.nav_slideshow,
-            R.id.nav_constraint_layout_sample
-        )
-            .setOpenableLayout(binding.drawerLayout)
-            .build()
+            R.id.nav_constraint_layout_sample,
+            R.id.nav_utiltest
+        ).setOpenableLayout(binding.drawerLayout).build()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.navView, navController)
