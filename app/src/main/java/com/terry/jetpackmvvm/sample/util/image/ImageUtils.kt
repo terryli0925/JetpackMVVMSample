@@ -39,11 +39,11 @@ object ImageUtils {
     /**
      * Load image with round
      */
-    fun loadRoundImage(iv: ImageView, url: String) {
+    fun loadRoundImage(iv: ImageView, url: String, radius: Int) {
         val options: RequestOptions = RequestOptions()
-            .transform(CenterCrop(), RoundedCorners(4)) //圆角
+            .transform(CenterCrop(), RoundedCorners(radius)) //圆角
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-        Glide.with(iv.context)
+        GlideApp.with(iv.context)
             .load(url)
             .apply(options)
             .into(iv)
@@ -58,14 +58,16 @@ object ImageUtils {
             ScreenUtils.dp2px(5.0F),
             RoundedCornersTransformation.CornerType.TOP
         )
-        Glide.with(context).load(url)
+        GlideApp.with(context).load(url)
             .apply(RequestOptions.bitmapTransform(transformation))
             .into(iv)
     }
 
-    // 固定宽度
+    /**
+     * Load image with fixed width and dynamic height
+     */
     fun loadDynamicHeightImage(context: Context, imageView: ImageView, url: String) {
-        Glide.with(context).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
+        GlideApp.with(context).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 val imageWidth = resource.width
                 val imageHeight = resource.height
@@ -84,9 +86,11 @@ object ImageUtils {
     }
 
 
-    // 固定高度
+    /**
+     * Load image with fixed height and dynamic width
+     */
     fun loadDynamicWidthImage(context: Context, imageView: ImageView, url: String) {
-        Glide.with(context).asBitmap().load(url).into(object : CustomTarget<Bitmap?>() {
+        GlideApp.with(context).asBitmap().load(url).into(object : CustomTarget<Bitmap?>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap?>?) {
                 val imageWidth = resource.width
                 val imageHeight = resource.height
@@ -102,9 +106,11 @@ object ImageUtils {
         })
     }
 
-    // 原始宽高
+    /**
+     * Load image with original width and height
+     */
     fun dynamicWHImage(context: Context, imageView: ImageView, url: String) {
-        Glide.with(context).asBitmap().load(url).into(object : CustomTarget<Bitmap?>() {
+        GlideApp.with(context).asBitmap().load(url).into(object : CustomTarget<Bitmap?>() {
             override fun onResourceReady(
                 resource: Bitmap,
                 transition: Transition<in Bitmap?>?
@@ -122,7 +128,7 @@ object ImageUtils {
     }
 
     /**
-     * Base64轉Bitmap
+     * Base64 transform to Bitmap
      */
     fun getBitmapFromBase64(base64: String): Bitmap {
         val decodedString = Base64.decode(base64, Base64.DEFAULT)
