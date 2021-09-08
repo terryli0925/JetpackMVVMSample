@@ -41,7 +41,5 @@ class ConstraintLayoutSampleFragment : Fragment() {
             binding.tvLeft3.visibility =
                 if (binding.tvLeft3.visibility == View.VISIBLE) View.GONE else View.VISIBLE
         }
-
-        binding.bg.refreshBG(requireActivity())
     }
 }
