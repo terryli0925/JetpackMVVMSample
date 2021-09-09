@@ -20,34 +20,40 @@ class BlurBGImageView : ImageView {
 
     constructor(context: Context?) : super(context) {}
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+    }
 
 
     fun refreshBG(activity: Activity) {
-        var bitmap1: Bitmap? = null
+        var bitmap: Bitmap? = null
         try {
-            bitmap1 = getScreenShot(activity)
+            bitmap = getScreenShot(activity)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        if (bitmap1 != null) {
-            blur(bitmap1, this, radius.toFloat()) //模糊处理
-            bitmap1.recycle()
+        bitmap?.let {
+            blur(it, this, radius.toFloat()) //模糊处理
+            bitmap.recycle()
         }
+
     }
 
-    private fun blur(bkg: Bitmap, view: ImageView, radius: Float) {
-        if (overlay != null) {
-            overlay!!.recycle()
-        }
+    private fun blur(bkg: Bitmap, iv: ImageView, radius: Float) {
+        overlay?.recycle()
         overlay = Bitmap.createScaledBitmap(bkg, bkg.width / scaleFactor, bkg.height / scaleFactor, false)
-        overlay = blur(context, overlay, radius) //高斯模糊
-        view.setImageBitmap(overlay)
+        overlay?.let {
+            overlay = blur(context, it, radius) //高斯模糊
+            iv.setImageBitmap(overlay)
+        }
     }
 
-    private fun blur(context: Context, image: Bitmap?, radius: Float): Bitmap {
+    private fun blur(context: Context, image: Bitmap, radius: Float): Bitmap {
         val rs = RenderScript.create(context)
-        val outputBitmap = Bitmap.createBitmap(image!!.width, image.height, Bitmap.Config.ARGB_8888)
+        val outputBitmap = Bitmap.createBitmap(image.width, image.height, Bitmap.Config.ARGB_8888)
         val `in` = Allocation.createFromBitmap(rs, image)
         val out = Allocation.createFromBitmap(rs, outputBitmap)
         val intrinsicBlur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs))
