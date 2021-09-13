@@ -11,10 +11,8 @@ import androidx.fragment.app.Fragment
 import com.terry.jetpackmvvm.sample.MainApplication
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
-    private var isViewVisible = false
-    private var isPrepared = false
-    private var isLoaded = false
     protected lateinit var binding: T
+    private var isFirstLoad = false
 
     override fun getContext(): Context? {
         return if (activity == null) {
@@ -33,43 +31,27 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        isPrepared = true;
-        onVisible();
-
         init()
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (userVisibleHint) {
-            isViewVisible = true
-            onVisible()
-        } else {
-            isViewVisible = false
-            onInvisible()
-        }
+    override fun onResume() {
+        super.onResume()
+        onLazyLoad()
     }
 
-    private fun onVisible() {
-        if (!isPrepared || !isViewVisible) {
-            return
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        isFirstLoad = true
+    }
+
+    private fun onLazyLoad() {
         lazyLoadEvery()
-        if (isLoaded) return
-        isLoaded = true
-        lazyLoad()
+        if (isFirstLoad) {
+            lazyLoad()
+            isFirstLoad = false
+        }
     }
 
-    /**
-     * 界面不可见时自动调用
-     */
-    private fun onInvisible() {
-
-    }
-
-    /**
-     * fragment处于可见状态时自动调用该方法，实现懒加载，一般用作网络请求
-     */
     protected open fun lazyLoad() {}
 
     protected open fun lazyLoadEvery() {}
