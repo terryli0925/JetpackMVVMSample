@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/activity_second.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/dialog_loading.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_constraint_layout_sample.xml" value="0.13677536231884058" />
+        <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_repo.xml" value="0.2078804347826087" />
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_slideshow.xml" value="0.1703125" />
       </map>
     </option>
