@@ -10,6 +10,7 @@ import com.terry.jetpackmvvm.sample.databinding.DialogVerificationCodeBinding
 import com.terry.jetpackmvvm.sample.databinding.FragmentUtilTestBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseAnimDialog
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
+import com.terry.jetpackmvvm.sample.util.RxUtils
 import com.terry.jetpackmvvm.sample.util.ScreenUtils
 
 class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>() {
@@ -20,8 +21,15 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>() {
     override fun init() {
         viewModel = ViewModelProvider(this).get(UtilTestViewModel::class.java)
 
-        binding.btnScreenshot.setOnClickListener { UtilTestUtils.showScreenShotDialog(parentFragmentManager) }
-        binding.btnAnimDialog.setOnClickListener { UtilTestUtils.showVerificationCodeDialog(requireContext()) }
+        RxUtils.throttleFirst(viewLifecycleOwner, binding.btnScreenshot, {
+            UtilTestUtils.showScreenShotDialog(parentFragmentManager)
+        })
+
+        RxUtils.throttleFirst(viewLifecycleOwner, binding.btnAnimDialog, {
+            UtilTestUtils.showVerificationCodeDialog(
+                requireContext()
+            )
+        })
     }
 
     companion object {
