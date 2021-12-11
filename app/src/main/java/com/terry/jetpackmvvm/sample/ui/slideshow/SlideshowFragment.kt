@@ -26,7 +26,8 @@ class SlideshowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        testANR()
+        //testANR()
+        ScrollingFragment().show(childFragmentManager, "")
     }
 
     private fun testANR() {

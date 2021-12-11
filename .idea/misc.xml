@@ -7,8 +7,11 @@
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/dialog_loading.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_constraint_layout_sample.xml" value="0.13677536231884058" />
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_repo.xml" value="0.2078804347826087" />
+        <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_scrolling.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_slideshow.xml" value="0.1703125" />
         <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/fragment_util_test.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/item_dialog_list.xml" value="0.2046875" />
+        <entry key="..\:/AndroidStudioProjects/Android/JetpackMVVMSample/app/src/main/res/layout/repo_item.xml" value="0.2046875" />
       </map>
     </option>
   </component>
