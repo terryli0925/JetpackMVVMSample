@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.SecondActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Second Activity"
+    <com.terry.jetpackmvvm.sample.widget.MarqueeVideoPlayer
+        android:id="@+id/video_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--    <com.superluo.textbannerlibrary.TextBannerView-->
+<!--        android:id="@+id/tv_banner"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="38dp"-->
+<!--        android:background="#cc8ac6"-->
+<!--        app:setGravity="right"-->
+<!--        app:setTextColor="#fff"-->
+<!--        app:setFlags="strike"-->
+<!--        app:setTypeface="italic"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@id/video_player"/>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

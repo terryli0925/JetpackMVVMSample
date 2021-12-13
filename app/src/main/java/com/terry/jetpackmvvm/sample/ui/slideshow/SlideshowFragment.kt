@@ -7,10 +7,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.shuyu.gsyvideoplayer.utils.OrientationUtils
+import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
 import com.terry.jetpackmvvm.sample.R
+
 
 class SlideshowFragment : Fragment() {
     private val slideshowViewModel: SlideshowViewModel by viewModels()
+
+    private lateinit var videoPlayer: StandardGSYVideoPlayer
+    private lateinit var orientationUtils: OrientationUtils
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +27,7 @@ class SlideshowFragment : Fragment() {
         slideshowViewModel.text.observe(viewLifecycleOwner, {
                 s -> textView.text = s
         })
+        videoPlayer = root.findViewById(R.id.video_player)
         return root
     }
 

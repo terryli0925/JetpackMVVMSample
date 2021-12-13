@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.SecondActivity" />
+            android:name=".ui.SecondActivity"
+            android:theme="@style/Theme.JetpackMVVMSample.NoActionBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
