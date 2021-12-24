@@ -15,16 +15,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.superluo.textbannerlibrary.TextBannerView-->
-<!--        android:id="@+id/tv_banner"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="38dp"-->
-<!--        android:background="#cc8ac6"-->
-<!--        app:setGravity="right"-->
-<!--        app:setTextColor="#fff"-->
-<!--        app:setFlags="strike"-->
-<!--        app:setTypeface="italic"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@id/video_player"/>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

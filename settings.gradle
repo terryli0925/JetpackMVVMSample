@@ -1,2 +1,2 @@
-include ':app', ':textbannerlibrary'
+include ':app'
 rootProject.name = "JetpackMVVMSample"

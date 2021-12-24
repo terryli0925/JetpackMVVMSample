@@ -146,7 +146,7 @@ dependencies {
 
     implementation 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.1.7-release-jitpack'
 
-    implementation project(':textbannerlibrary')
+    implementation 'com.superluo:textbannerview:1.0.5'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

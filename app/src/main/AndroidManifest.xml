@@ -25,7 +25,7 @@
         <activity
             android:name=".ui.SecondActivity"
             android:theme="@style/Theme.JetpackMVVMSample.NoActionBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:screenOrientation="portrait"/>
     </application>
 
