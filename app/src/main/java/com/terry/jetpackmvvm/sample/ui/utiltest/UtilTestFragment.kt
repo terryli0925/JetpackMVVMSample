@@ -20,7 +20,7 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>() {
         })
 
         RxUtils.throttleFirst(viewLifecycleOwner, binding.btnAnimDialogZoom, {
-            UtilTestUtils.showAnimDialog(requireContext(), AnimDialog.AnimInType.CENTER_ZOOM)
+            UtilTestUtils.showAnimDialog(requireContext(), AnimDialog.AnimInType.ZOOM)
         })
 
         RxUtils.throttleFirst(viewLifecycleOwner, binding.btnAnimDialogTop, {
@@ -29,6 +29,10 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>() {
 
         RxUtils.throttleFirst(viewLifecycleOwner, binding.btnAnimDialogBottom, {
             UtilTestUtils.showAnimDialog(requireContext(), AnimDialog.AnimInType.BOTTOM)
+        })
+
+        RxUtils.throttleFirst(viewLifecycleOwner, binding.btnVerificationCodeDialog, {
+            UtilTestUtils.showVerificationViewDialog(requireContext())
         })
     }
 
