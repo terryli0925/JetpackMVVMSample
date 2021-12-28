@@ -1,25 +1,25 @@
 package com.terry.jetpackmvvm.sample.ui.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding>(private val inflateMethod: (LayoutInflater) -> VB) :
+        AppCompatActivity() {
+
     protected var bundle: Bundle? = null
-    protected lateinit var binding: T
+    private var _binding: VB? = null
+    val binding: VB get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bundle = intent.extras
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        _binding = inflateMethod.invoke(layoutInflater)
+        setContentView(binding.root)
         init()
     }
-
-    /**
-     * Set layout id
-     */
-    protected abstract fun getLayoutId(): Int
 
     /**
      * Initial

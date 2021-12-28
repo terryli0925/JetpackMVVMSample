@@ -1,30 +1,24 @@
 package com.terry.jetpackmvvm.sample.ui
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.terry.jetpackmvvm.sample.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
-import com.terry.jetpackmvvm.sample.MainApplication
 import com.terry.jetpackmvvm.sample.R
+import com.terry.jetpackmvvm.sample.databinding.ActivityMainBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
 import com.terry.jetpackmvvm.sample.util.TAG
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
 import com.terry.jetpackmvvm.sample.util.activitymanager.OnAppStatusListener
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val viewModel: MainViewModel by viewModels()
-
-    override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun init() {
         setSupportActionBar(binding.appBarMain.toolbar)

@@ -1,13 +1,10 @@
 package com.terry.jetpackmvvm.sample.ui.constraintlayoutsample
 
 import android.view.View
-import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.databinding.FragmentConstraintLayoutSampleBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 
-class ConstraintLayoutSampleFragment : BaseFragment<FragmentConstraintLayoutSampleBinding>() {
-
-    override fun getLayoutId(): Int = R.layout.fragment_constraint_layout_sample
+class ConstraintLayoutSampleFragment : BaseFragment<FragmentConstraintLayoutSampleBinding>(FragmentConstraintLayoutSampleBinding::inflate) {
 
     override fun init() {
         binding.tvTitle3.setOnClickListener {

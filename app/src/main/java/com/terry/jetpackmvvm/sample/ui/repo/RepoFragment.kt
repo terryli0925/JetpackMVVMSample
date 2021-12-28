@@ -5,18 +5,15 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.util.Event
 
 
-class RepoFragment : BaseFragment<FragmentRepoBinding>() {
+class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::inflate) {
     private val viewModel: RepoViewModel by viewModels()
     private val repoAdapter = RepoAdapter(mutableListOf())
-
-    override fun getLayoutId(): Int = R.layout.fragment_repo
 
     override fun init() {
         binding.btnSearch.setOnClickListener { doSearch() }
