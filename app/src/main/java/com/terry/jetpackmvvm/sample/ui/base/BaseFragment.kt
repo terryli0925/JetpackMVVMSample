@@ -16,7 +16,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     override fun getContext(): Context? {
         return if (activity == null) {
-            MainApplication().app
+            MainApplication.app
         } else activity
     }
 
