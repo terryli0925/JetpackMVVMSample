@@ -2,18 +2,26 @@ package com.terry.jetpackmvvm.sample.ui.repo
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.terry.jetpackmvvm.sample.MainApplication
 import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
+import com.terry.jetpackmvvm.sample.di.component.DaggerFragmentComponent
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.util.Event
+import javax.inject.Inject
 
 
 class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::inflate) {
-    private val viewModel: RepoViewModel by viewModels()
+    @Inject
+    lateinit var viewModel: RepoViewModel
+//    private val viewModel: RepoViewModel by viewModels()
     private val repoAdapter = RepoAdapter(mutableListOf())
+
+    override fun initInject() {
+        getFragmentComponent().inject(this)
+    }
 
     override fun init() {
         binding.btnSearch.setOnClickListener { doSearch() }

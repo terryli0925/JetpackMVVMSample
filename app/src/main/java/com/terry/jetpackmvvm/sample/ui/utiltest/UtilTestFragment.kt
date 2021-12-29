@@ -9,6 +9,10 @@ import com.terry.jetpackmvvm.sample.widget.AnimDialog
 class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestBinding::inflate) {
     private lateinit var viewModel: UtilTestViewModel
 
+    override fun initInject() {
+        getFragmentComponent().inject(this)
+    }
+
     override fun init() {
         viewModel = ViewModelProvider(this).get(UtilTestViewModel::class.java)
 

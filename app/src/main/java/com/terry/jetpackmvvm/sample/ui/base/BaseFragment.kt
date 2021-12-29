@@ -1,11 +1,15 @@
 package com.terry.jetpackmvvm.sample.ui.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.terry.jetpackmvvm.sample.MainApplication
+import com.terry.jetpackmvvm.sample.di.component.DaggerFragmentComponent
+import com.terry.jetpackmvvm.sample.di.component.FragmentComponent
 
 abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (LayoutInflater, ViewGroup?, Boolean) -> VB) :
         Fragment() {
@@ -19,6 +23,11 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (La
 //            MainApplication.app
 //        } else activity
 //    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        initInject()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,9 +63,19 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (La
         }
     }
 
-    protected open fun lazyLoad() {}
+    protected fun getFragmentComponent(): FragmentComponent {
+        return DaggerFragmentComponent
+            .builder()
+            .appComponent((requireActivity().application as MainApplication).appComponent)
+            .build()
+    }
 
-    protected open fun lazyLoadEvery() {}
+    protected fun lazyLoad() {}
+
+    protected fun lazyLoadEvery() {}
 
     protected abstract fun init()
+
+    protected abstract fun initInject()
+
 }

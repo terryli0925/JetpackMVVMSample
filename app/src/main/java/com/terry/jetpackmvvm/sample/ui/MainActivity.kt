@@ -12,13 +12,23 @@ import com.google.android.material.snackbar.Snackbar
 import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.databinding.ActivityMainBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
+import com.terry.jetpackmvvm.sample.ui.repo.RepoViewModel
 import com.terry.jetpackmvvm.sample.util.TAG
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
 import com.terry.jetpackmvvm.sample.util.activitymanager.OnAppStatusListener
+import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val viewModel: MainViewModel by viewModels()
+
+    @Inject
+    lateinit var testViewModel: RepoViewModel
+//    private val testViewModel: RepoViewModel by viewModels()
+
+    override fun initInject() {
+        getActivityComponent().inject(this)
+    }
 
     override fun init() {
         setSupportActionBar(binding.appBarMain.toolbar)
