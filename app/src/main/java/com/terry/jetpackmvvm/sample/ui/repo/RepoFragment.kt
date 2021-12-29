@@ -4,23 +4,25 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.terry.jetpackmvvm.sample.MainApplication
 import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
-import com.terry.jetpackmvvm.sample.di.component.DaggerFragmentComponent
+import com.terry.jetpackmvvm.sample.ui.MainActivity
+import com.terry.jetpackmvvm.sample.ui.MainViewModel
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.util.Event
 import javax.inject.Inject
 
 
 class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::inflate) {
-    @Inject
-    lateinit var viewModel: RepoViewModel
+
+    @Inject lateinit var mainViewModel: MainViewModel
+    @Inject lateinit var viewModel: RepoViewModel
 //    private val viewModel: RepoViewModel by viewModels()
     private val repoAdapter = RepoAdapter(mutableListOf())
 
     override fun initInject() {
-        getFragmentComponent().inject(this)
+        (activity as MainActivity).activityComponent.inject(this)
+//        buildFragmentComponent().inject(this)
     }
 
     override fun init() {

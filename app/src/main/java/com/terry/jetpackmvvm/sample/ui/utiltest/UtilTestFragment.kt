@@ -10,7 +10,7 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
     private lateinit var viewModel: UtilTestViewModel
 
     override fun initInject() {
-        getFragmentComponent().inject(this)
+        buildFragmentComponent().inject(this)
     }
 
     override fun init() {

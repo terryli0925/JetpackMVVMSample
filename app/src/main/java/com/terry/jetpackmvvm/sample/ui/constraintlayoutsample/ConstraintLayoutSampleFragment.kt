@@ -7,7 +7,7 @@ import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 class ConstraintLayoutSampleFragment : BaseFragment<FragmentConstraintLayoutSampleBinding>(FragmentConstraintLayoutSampleBinding::inflate) {
 
     override fun initInject() {
-        getFragmentComponent().inject(this)
+        buildFragmentComponent().inject(this)
     }
 
     override fun init() {

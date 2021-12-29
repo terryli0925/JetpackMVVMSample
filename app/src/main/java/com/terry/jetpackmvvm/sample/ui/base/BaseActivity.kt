@@ -27,7 +27,7 @@ abstract class BaseActivity<VB : ViewDataBinding>(private val inflateMethod: (La
         init()
     }
 
-    protected fun getActivityComponent(): ActivityComponent {
+    protected fun buildActivityComponent(): ActivityComponent {
         return DaggerActivityComponent
             .builder()
             .appComponent((application as MainApplication).appComponent)

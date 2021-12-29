@@ -63,7 +63,7 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (La
         }
     }
 
-    protected fun getFragmentComponent(): FragmentComponent {
+    protected fun buildFragmentComponent(): FragmentComponent {
         return DaggerFragmentComponent
             .builder()
             .appComponent((requireActivity().application as MainApplication).appComponent)

@@ -10,7 +10,7 @@ import dagger.Component
 @Component(dependencies = [AppComponent::class])
 interface FragmentComponent {
 
-    fun inject(fragment: RepoFragment)
+//    fun inject(fragment: RepoFragment)
     fun inject(fragment: ConstraintLayoutSampleFragment)
     fun inject(fragment: UtilTestFragment)
 }

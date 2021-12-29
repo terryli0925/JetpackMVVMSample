@@ -4,13 +4,13 @@ import android.content.Intent
 import android.util.Log
 import android.view.Menu
 import android.view.View
-import androidx.activity.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.snackbar.Snackbar
 import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.databinding.ActivityMainBinding
+import com.terry.jetpackmvvm.sample.di.component.ActivityComponent
 import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
 import com.terry.jetpackmvvm.sample.ui.repo.RepoViewModel
 import com.terry.jetpackmvvm.sample.util.TAG
@@ -20,14 +20,15 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val viewModel: MainViewModel by viewModels()
-
-    @Inject
-    lateinit var testViewModel: RepoViewModel
+//    private val viewModel: MainViewModel by viewModels()
+    @Inject lateinit var activityComponent: ActivityComponent
+    @Inject lateinit var viewModel: MainViewModel
+    @Inject lateinit var testViewModel: RepoViewModel
 //    private val testViewModel: RepoViewModel by viewModels()
 
     override fun initInject() {
-        getActivityComponent().inject(this)
+        activityComponent = buildActivityComponent()
+        activityComponent.inject(this)
     }
 
     override fun init() {
