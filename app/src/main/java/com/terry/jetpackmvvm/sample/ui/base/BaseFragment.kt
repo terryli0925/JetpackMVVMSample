@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.terry.jetpackmvvm.sample.di.Injectable
 
 abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (LayoutInflater, ViewGroup?, Boolean) -> VB) :
-        Fragment() {
+        Fragment(), Injectable {
 
     private var _binding: VB? = null
     val binding get() = _binding!!
@@ -26,7 +27,6 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (La
         savedInstanceState: Bundle?
     ): View {
         _binding = inflateMethod.invoke(inflater, container, false)
-//        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         return binding.root
     }
 

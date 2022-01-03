@@ -2,7 +2,7 @@ package com.terry.jetpackmvvm.sample
 
 import android.app.Activity
 import android.app.Application
-import com.terry.jetpackmvvm.sample.di.DaggerAppComponent
+import com.terry.jetpackmvvm.sample.di.AppInjector
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -18,13 +18,8 @@ class MainApplication: Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         app = this
-        intiInjector()
+        AppInjector.init(this)
         ActivityManager.startWatcher(this)
-    }
-
-    private fun intiInjector() {
-        DaggerAppComponent.builder().application(this)
-            .build().inject(this)
     }
 
     companion object {
