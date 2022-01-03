@@ -1,10 +1,12 @@
 package com.terry.jetpackmvvm.sample.ui
 
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -15,10 +17,27 @@ import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
 import com.terry.jetpackmvvm.sample.util.TAG
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
 import com.terry.jetpackmvvm.sample.util.activitymanager.OnAppStatusListener
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
-class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate),
+    HasSupportFragmentInjector {
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val viewModel: MainViewModel by viewModels()
+
+    override fun supportFragmentInjector() = dispatchingAndroidInjector
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun init() {
         setSupportActionBar(binding.appBarMain.toolbar)

@@ -9,11 +9,19 @@ import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.util.Event
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 
 class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::inflate) {
-    private val viewModel: RepoViewModel by viewModels()
+    @Inject
+    lateinit var viewModel: RepoViewModel
     private val repoAdapter = RepoAdapter(mutableListOf())
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun init() {
         binding.btnSearch.setOnClickListener { doSearch() }

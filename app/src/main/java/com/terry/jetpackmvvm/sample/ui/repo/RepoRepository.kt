@@ -3,15 +3,18 @@ package com.terry.jetpackmvvm.sample.ui.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.terry.jetpackmvvm.sample.data.LoadingCallback
+import com.terry.jetpackmvvm.sample.data.api.GithubService
 import com.terry.jetpackmvvm.sample.data.api.RetrofitManager
 import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.data.model.RepoSearchResponse
 import com.terry.jetpackmvvm.sample.util.Event
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RepoDataModel {
-    private val githubService = RetrofitManager.githubService
+@Singleton
+class RepoRepository @Inject constructor(private val githubService: GithubService) {
 
     fun searchRepo(query: String): LiveData<Event<List<Repo>>> {
         val repos = MutableLiveData<Event<List<Repo>>>()
