@@ -46,4 +46,8 @@ class RepoViewModel : ViewModel {
     fun setLoading(value: Boolean) {
         _isLoading.value = value
     }
+
+    override fun onCleared() {
+        super.onCleared()
+    }
 }

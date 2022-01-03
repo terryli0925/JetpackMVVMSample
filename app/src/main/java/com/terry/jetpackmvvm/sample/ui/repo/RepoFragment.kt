@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
@@ -15,7 +16,12 @@ import javax.inject.Inject
 
 class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::inflate) {
     @Inject
-    lateinit var viewModel: RepoViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    val viewModel: RepoViewModel by viewModels {
+        viewModelFactory
+    }
+
     private val repoAdapter = RepoAdapter(mutableListOf())
 
     override fun onAttach(context: Context) {
