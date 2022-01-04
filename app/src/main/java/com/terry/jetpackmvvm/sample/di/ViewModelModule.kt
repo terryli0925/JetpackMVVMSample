@@ -2,6 +2,7 @@ package com.terry.jetpackmvvm.sample.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.terry.jetpackmvvm.sample.ui.MainViewModel
 import com.terry.jetpackmvvm.sample.ui.repo.RepoViewModel
 import com.terry.jetpackmvvm.sample.util.ViewModelFactory
 import dagger.Binds
@@ -10,6 +11,11 @@ import dagger.multibindings.IntoMap
 
 @Module
 abstract class ViewModelModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
+
     @Binds
     @IntoMap
     @ViewModelKey(RepoViewModel::class)

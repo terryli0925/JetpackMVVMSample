@@ -2,12 +2,14 @@ package com.terry.jetpackmvvm.sample.ui.repo
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
+import com.terry.jetpackmvvm.sample.ui.MainViewModel
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.util.Event
 import javax.inject.Inject
@@ -17,6 +19,9 @@ class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::infl
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    val mainViewModel: MainViewModel by activityViewModels {
+        viewModelFactory
+    }
     val viewModel: RepoViewModel by viewModels {
         viewModelFactory
     }
@@ -29,6 +34,10 @@ class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::infl
             context, LinearLayoutManager.VERTICAL, false
         )
         binding.recyclerView.adapter = repoAdapter
+        mainViewModel.showBanner.observe(
+            viewLifecycleOwner,
+            { state: Boolean ->
+            })
         viewModel.repos.observe(viewLifecycleOwner, Observer<Event<List<Repo>>> { event ->
             val data: List<Repo> = event.content
             repoAdapter.swapItems(data)

@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -24,15 +25,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels() {
+        viewModelFactory
+    }
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 
     override fun init() {
         setSupportActionBar(binding.appBarMain.toolbar)
         binding.appBarMain.fab.setOnClickListener { view ->
-//            viewModel.setBannerState(mViewModel.getBannerState().getValue() != null && !mViewModel.getBannerState().getValue());
+//            viewModel.setBannerState(viewModel.showBanner.value != null && !(viewModel.showBanner.value!!))
             //startActivity(Intent(this, RepoViewModel::class.java))
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
