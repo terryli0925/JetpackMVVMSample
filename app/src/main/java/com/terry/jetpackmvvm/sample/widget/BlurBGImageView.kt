@@ -77,11 +77,12 @@ class BlurBGImageView : ImageView {
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
         val bmp = view.drawingCache
-        val statusBarHeight = ScreenUtils.getStatusHeight(activity)
+//        val statusBarHeight = ScreenUtils.getStatusHeight(activity)   // get zero
+        val statusBarHeight = ScreenUtils.getStatusBarHeight(activity)
         val width = ScreenUtils.getScreenWidth()
         val height = ScreenUtils.getScreenHeight()
 
-        val ret = Bitmap.createBitmap(bmp, statusBarHeight, statusBarHeight, width, height)
+        val ret = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height)
         view.destroyDrawingCache()
         return ret
     }
