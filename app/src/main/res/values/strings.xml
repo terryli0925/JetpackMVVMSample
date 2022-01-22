@@ -13,6 +13,8 @@
     <string name="menu_constraint_layout_sample">ConstraintLayout</string>
     <string name="menu_utiltest">Utiltest</string>
 
+    <string name="spinner_please_select">Select</string>
+
     <string name="text_verification_code">Verification Code</string>
 
     <string name="large_text">

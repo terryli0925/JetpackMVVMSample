@@ -2,7 +2,6 @@ package com.terry.jetpackmvvm.sample.ui.utiltest
 
 import android.Manifest
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -11,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import autodispose2.androidx.lifecycle.AndroidLifecycleScopeProvider
 import autodispose2.autoDispose
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jakewharton.rxbinding4.view.clicks
 import com.tbruyelle.rxpermissions3.RxPermissions
 import com.terry.jetpackmvvm.sample.R
@@ -23,8 +23,9 @@ import com.terry.jetpackmvvm.sample.ui.utiltest.dialog.ScrollingFragment
 import com.terry.jetpackmvvm.sample.util.FileUtils
 import com.terry.jetpackmvvm.sample.util.RxUtils
 import com.terry.jetpackmvvm.sample.util.ScreenUtils
-import com.terry.jetpackmvvm.sample.util.ViewUtils
+import com.terry.jetpackmvvm.sample.util.UIUtils
 import com.terry.jetpackmvvm.sample.widget.AnimDialog
+import com.terry.jetpackmvvm.sample.widget.SpinnerView
 import com.terry.jetpackmvvm.sample.widget.VerificationCodeView
 import java.util.concurrent.TimeUnit
 
@@ -77,6 +78,8 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
         RxUtils.throttleFirst(viewLifecycleOwner, binding.btnListDialog, {
             ScrollingFragment().show(childFragmentManager, "")
         })
+
+        initSpinner()
     }
 
     private fun showScreenShotDialog(fm: FragmentManager) {
@@ -128,10 +131,28 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
 //        val bitmap = ViewUtils.loadBitmapFromView(shareView)
 //        context?.let { FileUtils.saveImageToAppDir(it, bitmap) }
 
-        val bitmap2 = ViewUtils.loadBitmapFromView(shareView)
+        val bitmap2 = UIUtils.loadBitmapFromView(shareView)
         context?.let { FileUtils.saveImageToPicture(it, bitmap2) }
     }
 
+    private fun initSpinner() {
+        val list = mutableListOf<String>()
+        for (i in 1..20) {
+            list.add(i.toString())
+        }
+
+        binding.spinner.setTitle("Custom spinner")
+        binding.spinner.setList(list)
+        binding.spinner.onItemSelectedListener = object : SpinnerView.OnItemSelectedListener {
+            override fun onItemSelected(
+                adapter: BaseQuickAdapter<*, *>,
+                view: View,
+                position: Int
+            ) {
+                Toast.makeText(context, "Selected: ${adapter.data[position]}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     companion object {
         fun newInstance() = UtilTestFragment()
