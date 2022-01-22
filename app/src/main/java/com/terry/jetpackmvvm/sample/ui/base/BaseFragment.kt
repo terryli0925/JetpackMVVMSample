@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.terry.jetpackmvvm.sample.util.SystemUtils
 
 abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (LayoutInflater, ViewGroup?, Boolean) -> VB) :
         Fragment() {
@@ -42,6 +43,7 @@ abstract class BaseFragment<VB : ViewDataBinding>(private val inflateMethod: (La
 
     override fun onDestroyView() {
         super.onDestroyView()
+        SystemUtils.hideSoftInput(requireActivity())
         _binding = null
         isFirstLoad = true
     }
