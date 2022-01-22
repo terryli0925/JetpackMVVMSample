@@ -5,7 +5,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.slideshow.ScrollingFragment">
+        tools:context=".ui.utiltest.dialog.ScrollingFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

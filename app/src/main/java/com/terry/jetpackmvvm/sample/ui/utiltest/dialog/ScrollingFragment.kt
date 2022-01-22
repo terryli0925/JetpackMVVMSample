@@ -1,4 +1,4 @@
-package com.terry.jetpackmvvm.sample.ui.slideshow
+package com.terry.jetpackmvvm.sample.ui.utiltest.dialog
 
 import androidx.recyclerview.widget.GridLayoutManager
 import com.terry.jetpackmvvm.sample.R

@@ -19,6 +19,7 @@ import com.terry.jetpackmvvm.sample.databinding.DialogVerificationCodeBinding
 import com.terry.jetpackmvvm.sample.databinding.FragmentUtilTestBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.ui.utiltest.dialog.ScreenshotDialog
+import com.terry.jetpackmvvm.sample.ui.utiltest.dialog.ScrollingFragment
 import com.terry.jetpackmvvm.sample.util.FileUtils
 import com.terry.jetpackmvvm.sample.util.RxUtils
 import com.terry.jetpackmvvm.sample.util.ScreenUtils
@@ -70,9 +71,12 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
                     saveShareView()
                 },
                 { e: Throwable ->
-                    Log.e("terry", e.localizedMessage)
                     Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
                 })
+
+        RxUtils.throttleFirst(viewLifecycleOwner, binding.btnListDialog, {
+            ScrollingFragment().show(childFragmentManager, "")
+        })
     }
 
     private fun showScreenShotDialog(fm: FragmentManager) {

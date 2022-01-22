@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.terry.jetpackmvvm.sample.R
+import com.terry.jetpackmvvm.sample.ui.utiltest.dialog.ScrollingFragment
 
 class SlideshowFragment : Fragment() {
     private val slideshowViewModel: SlideshowViewModel by viewModels()
@@ -27,7 +28,6 @@ class SlideshowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //testANR()
-        ScrollingFragment().show(childFragmentManager, "")
     }
 
     private fun testANR() {
