@@ -2,6 +2,7 @@ package com.terry.jetpackmvvm.sample.ui.utiltest
 
 import android.Manifest
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -58,10 +59,20 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
         binding.btnViewToImage.clicks()
             .throttleFirst(3, TimeUnit.SECONDS)
             .compose(rxPermissions.ensureEach(Manifest.permission.WRITE_EXTERNAL_STORAGE))
-            .autoDispose(AndroidLifecycleScopeProvider.from(viewLifecycleOwner, Lifecycle.Event.ON_DESTROY))
-            .subscribe {
-                saveShareView()
-            }
+            .autoDispose(
+                AndroidLifecycleScopeProvider.from(
+                    viewLifecycleOwner,
+                    Lifecycle.Event.ON_DESTROY
+                )
+            )
+            .subscribe(
+                {
+                    saveShareView()
+                },
+                { e: Throwable ->
+                    Log.e("terry", e.localizedMessage)
+                    Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+                })
     }
 
     private fun showScreenShotDialog(fm: FragmentManager) {
@@ -110,10 +121,11 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
         )
         shareView.layout(0, 0, shareView.measuredWidth, shareView.measuredHeight)
 
-        Thread {
-            val bitmap = ViewUtils.loadBitmapFromView(shareView)
-            context?.let { FileUtils.saveImageToFile(it, bitmap) }
-        }.start()
+//        val bitmap = ViewUtils.loadBitmapFromView(shareView)
+//        context?.let { FileUtils.saveImageToAppDir(it, bitmap) }
+
+        val bitmap2 = ViewUtils.loadBitmapFromView(shareView)
+        context?.let { FileUtils.saveImageToPicture(it, bitmap2) }
     }
 
 
