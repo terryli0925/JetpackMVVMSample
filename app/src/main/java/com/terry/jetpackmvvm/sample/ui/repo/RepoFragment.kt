@@ -2,6 +2,7 @@ package com.terry.jetpackmvvm.sample.ui.repo
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import com.terry.jetpackmvvm.sample.data.model.Repo
 import com.terry.jetpackmvvm.sample.databinding.FragmentRepoBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.util.Event
+import com.terry.jetpackmvvm.sample.util.NetworkUtils
 
 
 class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::inflate) {
@@ -28,11 +30,22 @@ class RepoFragment : BaseFragment<FragmentRepoBinding>(FragmentRepoBinding::infl
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        checkNetworkConnection()
+    }
+
     private fun doSearch() {
         val query = binding.edtQuery.text.toString()
         viewModel.setLoading(true)
         viewModel.searchRepo(query)
         dismissKeyboard()
+    }
+
+    private fun checkNetworkConnection() {
+        val status = NetworkUtils.isConnected()
+        binding.btnSearch.isEnabled = status
+        if (!status) Toast.makeText(context, "Connection is disconnected", Toast.LENGTH_SHORT).show()
     }
 
     private fun dismissKeyboard() {
