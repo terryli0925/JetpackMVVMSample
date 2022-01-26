@@ -15,6 +15,7 @@ import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
 import com.terry.jetpackmvvm.sample.util.TAG
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
 import com.terry.jetpackmvvm.sample.util.activitymanager.OnAppStatusListener
+import timber.log.Timber
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -48,11 +49,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         ActivityManager.callbacks.setOnAppStatusListener(object : OnAppStatusListener {
             override fun onFront() {
-                Log.i(TAG, "onFront")
+                Timber.d("onFront")
             }
 
             override fun onBack() {
-                Log.i(TAG, "onBack")
+                Timber.d("onBack")
             }
         })
     }

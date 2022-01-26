@@ -3,10 +3,11 @@ package com.terry.jetpackmvvm.sample.util.activitymanager;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
-import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.Set;
+
+import timber.log.Timber;
 
 public class ActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
     private static final String TAG = "ActivityLifecycle";
@@ -93,7 +94,7 @@ public class ActivityLifecycleCallbacks implements Application.ActivityLifecycle
     }
 
     private void log(Activity activity, String state) {
-        Log.i(TAG, activity.getClass().getSimpleName() + " " + state);
+        Timber.d(activity.getClass().getSimpleName() + " " + state);
     }
 }
 
