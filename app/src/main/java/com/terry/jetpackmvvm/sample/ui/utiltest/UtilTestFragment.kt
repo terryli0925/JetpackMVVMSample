@@ -20,14 +20,14 @@ import com.terry.jetpackmvvm.sample.databinding.FragmentUtilTestBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseFragment
 import com.terry.jetpackmvvm.sample.ui.utiltest.dialog.ScreenshotDialog
 import com.terry.jetpackmvvm.sample.ui.utiltest.dialog.ScrollingFragment
-import com.terry.jetpackmvvm.sample.util.FileUtils
-import com.terry.jetpackmvvm.sample.util.RxUtils
-import com.terry.jetpackmvvm.sample.util.ScreenUtils
-import com.terry.jetpackmvvm.sample.util.UIUtils
+import com.terry.jetpackmvvm.sample.util.*
+import com.terry.jetpackmvvm.sample.util.image.ImageUtils
 import com.terry.jetpackmvvm.sample.widget.AnimDialog
 import com.terry.jetpackmvvm.sample.widget.SpinnerView
 import com.terry.jetpackmvvm.sample.widget.VerificationCodeView
+import java.io.File
 import java.util.concurrent.TimeUnit
+
 
 class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestBinding::inflate) {
 
@@ -69,11 +69,23 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
             )
             .subscribe(
                 {
-                    saveShareView()
+                    saveView()
                 },
                 { e: Throwable ->
                     Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
                 })
+
+        RxUtils.throttleFirst(viewLifecycleOwner, binding.btnShareText, {
+            shareText()
+        })
+
+        RxUtils.throttleFirst(viewLifecycleOwner, binding.btnShareImage, {
+            shareImage()
+        })
+
+        RxUtils.throttleFirst(viewLifecycleOwner, binding.btnShareContent, {
+            shareContent()
+        })
 
         RxUtils.throttleFirst(viewLifecycleOwner, binding.btnListDialog, {
             ScrollingFragment().show(childFragmentManager, "")
@@ -109,7 +121,7 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
         dialog.contentView(binding.root).cancelable(false).show()
     }
 
-    private fun saveShareView() {
+    private fun saveView() {
         val shareView = LayoutInflater.from(context).inflate(
             R.layout.fragment_constraint_layout_sample,
             null,
@@ -128,11 +140,41 @@ class UtilTestFragment : BaseFragment<FragmentUtilTestBinding>(FragmentUtilTestB
         )
         shareView.layout(0, 0, shareView.measuredWidth, shareView.measuredHeight)
 
-//        val bitmap = ViewUtils.loadBitmapFromView(shareView)
-//        context?.let { FileUtils.saveImageToAppDir(it, bitmap) }
+//        val bitmap = UIUtils.loadBitmapFromView(shareView)
+//        context?.let { FileUtils.saveImageToPicture(it, bitmap) }
 
         val bitmap2 = UIUtils.loadBitmapFromView(shareView)
         context?.let { FileUtils.saveImageToPicture(it, bitmap2) }
+    }
+
+    private fun shareText() {
+        context?.let {
+            ShareUtils.shareText(it, null, "test share content")
+        }
+    }
+
+    private fun shareImage() {
+        context?.let {
+            val bitmap = ImageUtils.getBitmap(it, R.mipmap.ic_launcher_round)
+            val filename = System.currentTimeMillis().toString() + ".jpg"
+            FileUtils.saveImageToAppDir(it, bitmap, filename)
+
+            val appDir = File(it.filesDir, "images")
+            val file = File(appDir, filename)
+            ShareUtils.shareImage(it, file)
+        }
+    }
+
+    private fun shareContent() {
+        context?.let {
+            val bitmap = ImageUtils.getBitmap(it, R.mipmap.ic_launcher_round)
+            val filename = System.currentTimeMillis().toString() + ".jpg"
+            FileUtils.saveImageToAppDir(it, bitmap, filename)
+
+            val appDir = File(it.filesDir, "images")
+            val file = File(appDir, filename)
+            ShareUtils.shareContent(it, "test content", file)
+        }
     }
 
     private fun initSpinner() {

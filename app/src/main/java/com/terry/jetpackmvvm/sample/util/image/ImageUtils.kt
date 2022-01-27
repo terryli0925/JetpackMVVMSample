@@ -1,23 +1,21 @@
 package com.terry.jetpackmvvm.sample.util.image
 
 import android.content.Context
+import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.util.Base64
 import android.widget.ImageView
-import com.bumptech.glide.Glide
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.terry.jetpackmvvm.sample.GlideApp
-import com.terry.jetpackmvvm.sample.util.ScreenUtils
-import android.graphics.drawable.Drawable
-
-import android.graphics.Bitmap
-
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
-import android.util.Base64
+import com.terry.jetpackmvvm.sample.GlideApp
+import com.terry.jetpackmvvm.sample.util.ScreenUtils
 
 
 object ImageUtils {
@@ -130,9 +128,36 @@ object ImageUtils {
     /**
      * Base64 transform to Bitmap
      */
-    fun getBitmapFromBase64(base64: String): Bitmap {
+    fun getBitmap(base64: String): Bitmap {
         val decodedString = Base64.decode(base64, Base64.DEFAULT)
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+    }
+
+    fun getBitmap(context: Context, @DrawableRes resId: Int): Bitmap? {
+        val drawable = ContextCompat.getDrawable(context, resId) ?: return null
+        return getBitmap(drawable)
+    }
+
+    fun getBitmap(drawable: Drawable?): Bitmap? {
+        drawable ?: return null
+        if (drawable is BitmapDrawable) {
+            drawable.bitmap?.let {
+                return it
+            }
+        }
+        val bitmap: Bitmap = if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
+            Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+        } else {
+            Bitmap.createBitmap(
+                drawable.intrinsicWidth,
+                drawable.intrinsicHeight,
+                Bitmap.Config.ARGB_8888
+            )
+        }
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+        return bitmap
     }
 
     /**

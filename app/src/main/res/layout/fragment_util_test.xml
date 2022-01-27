@@ -85,6 +85,37 @@
                 app:layout_constraintTop_toBottomOf="@id/btn_verification_code_dialog" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_share_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Share text"
+                app:backgroundTint="@color/teal_200"
+                app:layout_constraintEnd_toStartOf="@id/btn_share_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_view_to_image" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_share_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share image"
+                app:backgroundTint="@color/teal_200"
+                app:layout_constraintEnd_toStartOf="@id/btn_share_content"
+                app:layout_constraintStart_toEndOf="@id/btn_share_text"
+                app:layout_constraintTop_toTopOf="@id/btn_share_text" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_share_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share content"
+                app:backgroundTint="@color/teal_200"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_share_image"
+                app:layout_constraintTop_toTopOf="@id/btn_share_text" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_list_dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,17 +124,17 @@
                 app:backgroundTint="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_view_to_image" />
+                app:layout_constraintTop_toBottomOf="@id/btn_share_image" />
 
             <com.terry.jetpackmvvm.sample.widget.SpinnerView
                 android:id="@+id/spinner"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                app:layout_constraintWidth_percent="0.8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_list_dialog" />
+                app:layout_constraintTop_toBottomOf="@id/btn_list_dialog"
+                app:layout_constraintWidth_percent="0.8" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

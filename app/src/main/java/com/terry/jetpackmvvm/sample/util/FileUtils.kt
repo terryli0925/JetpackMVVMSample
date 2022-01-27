@@ -3,10 +3,13 @@ package com.terry.jetpackmvvm.sample.util
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.core.content.FileProvider
+import com.terry.jetpackmvvm.sample.BuildConfig
 import java.io.File
 import java.io.FileOutputStream
 
@@ -18,6 +21,10 @@ object FileUtils {
      * context.getExternalFilesDir(""): /storage/emulated/0/Android/data/<package name>/files
      */
     fun saveImageToAppDir(context: Context, bmp: Bitmap?) {
+        saveImageToAppDir(context, bmp, System.currentTimeMillis().toString() + ".jpg")
+    }
+
+    fun saveImageToAppDir(context: Context, bmp: Bitmap?, filename: String) {
         bmp ?: return
 
         val appDir = File(context.filesDir, "images")
@@ -25,8 +32,7 @@ object FileUtils {
         if (!appDir.exists()) {
             appDir.mkdir()
         }
-        val fileName = System.currentTimeMillis().toString() + ".jpg"
-        val file = File(appDir, fileName)
+        val file = File(appDir, filename)
         try {
             val fos = FileOutputStream(file)
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos)
@@ -55,7 +61,6 @@ object FileUtils {
     }
 
     fun saveImageToPicture(context: Context, bmp: Bitmap?) {
-        bmp ?: return
         saveImageToSharedStorage(context, bmp, Environment.DIRECTORY_PICTURES)
     }
 
@@ -69,9 +74,15 @@ object FileUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             values.put(MediaStore.MediaColumns.RELATIVE_PATH, directory)
         } else {
-            values.put(MediaStore.MediaColumns.DATA, "${Environment.getExternalStorageDirectory().path}/$directory/$fileName")
+            values.put(
+                MediaStore.MediaColumns.DATA,
+                "${Environment.getExternalStorageDirectory().path}/$directory/$fileName"
+            )
         }
-        val uri = context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        val uri = context.contentResolver.insert(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            values
+        )
 //        val uri = context.contentResolver.insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, values)
         if (uri != null) {
             val outputStream = context.contentResolver.openOutputStream(uri)
@@ -81,5 +92,24 @@ object FileUtils {
                 Toast.makeText(context, "Save successfully.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    fun fileToUri(context: Context, file: File?): Uri? {
+        if (!isFileExists(file)) return null
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val authority: String = BuildConfig.APPLICATION_ID + ".fileprovider"
+            try {
+                FileProvider.getUriForFile(context, authority, file!!)
+            } catch (e: IllegalArgumentException) {
+                return null
+            }
+        } else {
+            Uri.fromFile(file)
+        }
+    }
+
+    fun isFileExists(file: File?): Boolean {
+        if (file == null) return false
+        return file.exists()
     }
 }
