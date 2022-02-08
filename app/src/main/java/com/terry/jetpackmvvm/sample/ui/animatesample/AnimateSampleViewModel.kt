@@ -1,10 +1,10 @@
-package com.terry.jetpackmvvm.sample.ui.slideshow
+package com.terry.jetpackmvvm.sample.ui.animatesample
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class AnimateSampleViewModel : ViewModel() {
     private val _text: MutableLiveData<String> = MutableLiveData()
 
     val text: LiveData<String>

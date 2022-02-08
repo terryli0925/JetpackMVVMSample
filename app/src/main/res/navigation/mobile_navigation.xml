@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_switch_sample" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.terry.jetpackmvvm.sample.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_animate_sample"
+        android:name="com.terry.jetpackmvvm.sample.ui.animatesample.AnimateSampleFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_animate_sample" />
 
     <fragment
         android:id="@+id/nav_constraint_layout_sample"

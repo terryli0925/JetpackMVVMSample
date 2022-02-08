@@ -1,7 +1,6 @@
 package com.terry.jetpackmvvm.sample.ui
 
 import android.content.Intent
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
@@ -12,7 +11,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.databinding.ActivityMainBinding
 import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
-import com.terry.jetpackmvvm.sample.util.TAG
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
 import com.terry.jetpackmvvm.sample.util.activitymanager.OnAppStatusListener
 import timber.log.Timber
@@ -34,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         appBarConfiguration = AppBarConfiguration.Builder(
             R.id.nav_repo,
             R.id.nav_switch_sample,
-            R.id.nav_slideshow,
+            R.id.nav_animate_sample,
             R.id.nav_constraint_layout_sample,
             R.id.nav_utiltest
         ).setOpenableLayout(binding.drawerLayout).build()
