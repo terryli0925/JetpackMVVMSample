@@ -11,8 +11,6 @@
     </item>
 
     <item
-        android:width="12dp"
-        android:height="12dp"
         android:bottom="@dimen/dp_10"
         android:drawable="@drawable/ic_arrow_drop_down"
         android:left="@dimen/dp_10"
