@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.databinding.FragmentSwitchSampleBinding
 import com.terry.jetpackmvvm.sample.ui.MainViewModel
+import com.terry.jetpackmvvm.sample.util.UIUtils
 
 
 class SwitchSampleFragment : Fragment() {
@@ -40,22 +41,43 @@ class SwitchSampleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.ivStep1.setOnClickListener {
-            if (step < 3) step++ else step = 1
-            val resId = when(step) {
-                1 -> R.drawable.ic_stepper_circle_black
-                2 -> R.drawable.ic_stepper_circle_blue
-                3 -> R.drawable.ic_stepper_circle_checked
-                else -> -1
-            }
-            if (resId != -1) {
-                binding.ivStep1.setImageResource(resId)
-            }
+        binding.btnNext.setOnClickListener {
+            if (step >= 5) return@setOnClickListener
+            onStepChanged(++step)
         }
+
+        onStepChanged(1)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu.clear()
+    }
+
+    private fun onStepChanged(step: Int) {
+        when (step) {
+            1 -> {
+                binding.ivStep1.setImageResource(R.drawable.ic_stepper_circle_blue)
+            }
+            2 -> {
+                binding.ivStep1.setImageResource(R.drawable.ic_stepper_circle_checked)
+                binding.vLine1.setBackgroundColor(UIUtils.getColor(requireContext(), android.R.color.holo_blue_light))
+                binding.ivStep2.setImageResource(R.drawable.ic_stepper_circle_blue)
+            }
+            3 -> {
+                binding.ivStep2.setImageResource(R.drawable.ic_stepper_circle_checked)
+                binding.vLine2.setBackgroundColor(UIUtils.getColor(requireContext(), android.R.color.holo_blue_light))
+                binding.ivStep3.setImageResource(R.drawable.ic_stepper_circle_blue)
+            }
+            4 -> {
+                binding.ivStep3.setImageResource(R.drawable.ic_stepper_circle_checked)
+                binding.vLine3.setBackgroundColor(UIUtils.getColor(requireContext(), android.R.color.holo_blue_light))
+                binding.ivStep4.setImageResource(R.drawable.ic_stepper_circle_blue)
+            }
+            5 -> {
+                binding.ivStep4.setImageResource(R.drawable.ic_stepper_circle_checked)
+            }
+            else -> return
+        }
     }
 }
