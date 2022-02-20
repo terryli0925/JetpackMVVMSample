@@ -4,18 +4,21 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.databinding.FragmentSwitchSampleBinding
 import com.terry.jetpackmvvm.sample.ui.MainViewModel
+
 
 class SwitchSampleFragment : Fragment() {
     private lateinit var binding: FragmentSwitchSampleBinding
     private val viewModel: MainViewModel by activityViewModels()
 
+    private var step: Int = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +36,22 @@ class SwitchSampleFragment : Fragment() {
             )
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.ivStep1.setOnClickListener {
+            if (step < 3) step++ else step = 1
+            val resId = when(step) {
+                1 -> R.drawable.ic_stepper_circle_black
+                2 -> R.drawable.ic_stepper_circle_blue
+                3 -> R.drawable.ic_stepper_circle_checked
+                else -> -1
+            }
+            if (resId != -1) {
+                binding.ivStep1.setImageResource(resId)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

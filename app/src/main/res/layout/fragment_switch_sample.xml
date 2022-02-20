@@ -12,7 +12,6 @@
             android:id="@+id/switch0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/switch1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +23,6 @@
             android:layout_height="wrap_content"
             android:thumb="@drawable/customswitchselector"
             android:track="@drawable/custom_track"
-            app:layout_constraintBottom_toTopOf="@+id/switch2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch0"
@@ -35,10 +33,111 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/SCBSwitch"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch1"
             app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_step1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="step1"
+            app:layout_constraintEnd_toStartOf="@id/tv_step2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/switch2" />
+
+        <TextView
+            android:id="@+id/tv_step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="step2"
+            app:layout_constraintEnd_toStartOf="@id/tv_step3"
+            app:layout_constraintStart_toEndOf="@id/tv_step1"
+            app:layout_constraintTop_toTopOf="@id/tv_step1" />
+
+        <TextView
+            android:id="@+id/tv_step3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="step3"
+            app:layout_constraintEnd_toStartOf="@id/tv_step4"
+            app:layout_constraintStart_toEndOf="@id/tv_step2"
+            app:layout_constraintTop_toTopOf="@id/tv_step1" />
+
+        <TextView
+            android:id="@+id/tv_step4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="step4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_step3"
+            app:layout_constraintTop_toTopOf="@id/tv_step1" />
+
+        <ImageView
+            android:id="@+id/iv_step1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_stepper_circle_black"
+            app:layout_constraintEnd_toStartOf="@id/iv_step2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_step1" />
+
+        <ImageView
+            android:id="@+id/iv_step2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_stepper_circle_black"
+            app:layout_constraintEnd_toStartOf="@id/iv_step3"
+            app:layout_constraintStart_toEndOf="@id/iv_step1"
+            app:layout_constraintTop_toTopOf="@id/iv_step1" />
+
+        <ImageView
+            android:id="@+id/iv_step3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_stepper_circle_black"
+            app:layout_constraintEnd_toStartOf="@id/iv_step4"
+            app:layout_constraintStart_toEndOf="@id/iv_step2"
+            app:layout_constraintTop_toTopOf="@id/iv_step1" />
+
+        <ImageView
+            android:id="@+id/iv_step4"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_stepper_circle_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_step3"
+            app:layout_constraintTop_toTopOf="@id/iv_step1" />
+
+        <View
+            android:id="@+id/v_line1"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_step1"
+            app:layout_constraintEnd_toStartOf="@id/iv_step2"
+            app:layout_constraintStart_toEndOf="@id/iv_step1"
+            app:layout_constraintTop_toTopOf="@id/iv_step1" />
+
+        <View
+            android:id="@+id/v_line2"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_step1"
+            app:layout_constraintEnd_toStartOf="@id/iv_step3"
+            app:layout_constraintStart_toEndOf="@id/iv_step2"
+            app:layout_constraintTop_toTopOf="@id/iv_step1" />
+
+        <View
+            android:id="@+id/v_line3"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_step1"
+            app:layout_constraintEnd_toStartOf="@id/iv_step4"
+            app:layout_constraintStart_toEndOf="@id/iv_step3"
+            app:layout_constraintTop_toTopOf="@id/iv_step1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
