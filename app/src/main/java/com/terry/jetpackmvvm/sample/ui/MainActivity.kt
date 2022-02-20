@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.snackbar.Snackbar
 import com.terry.jetpackmvvm.sample.R
 import com.terry.jetpackmvvm.sample.databinding.ActivityMainBinding
+import com.terry.jetpackmvvm.sample.service.CountDownService
 import com.terry.jetpackmvvm.sample.ui.base.BaseActivity
 import com.terry.jetpackmvvm.sample.util.TAG
 import com.terry.jetpackmvvm.sample.util.activitymanager.ActivityManager
@@ -55,6 +56,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 Log.i(TAG, "onBack")
             }
         })
+
+        val intentService = Intent(this@MainActivity, CountDownService::class.java)
+        startService(intentService)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -67,5 +71,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         return (NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp())
+    }
+
+    override fun onDestroy() {
+        val intent = Intent(this@MainActivity, CountDownService::class.java)
+        stopService(intent)
+        super.onDestroy()
     }
 }
