@@ -19,23 +19,52 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/v_one_left"
+        android:id="@+id/v_va_left"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:background="@android:color/holo_blue_light"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@id/v_one_right"
+        app:layout_constraintEnd_toStartOf="@id/v_va_right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_va"
         tools:visibility="visible" />
 
     <View
-        android:id="@+id/v_one_right"
+        android:id="@+id/v_va_right"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:background="@android:color/holo_blue_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/v_one_left"
-        app:layout_constraintTop_toTopOf="@id/v_one_left" />
+        app:layout_constraintStart_toEndOf="@id/v_va_left"
+        app:layout_constraintTop_toTopOf="@id/v_va_left" />
+
+    <TextView
+        android:id="@+id/tv_oa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="ObjectAnimator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_va" />
+
+    <View
+        android:id="@+id/v_oa_left"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_blue_light"
+        app:layout_constraintEnd_toStartOf="@id/v_oa_right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_oa"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/v_oa_right"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/v_oa_left"
+        app:layout_constraintTop_toTopOf="@id/v_oa_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
